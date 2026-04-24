@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: umairbutt2918/backend-app:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5000
+
+        env:
+        - name: DB_HOST
+          value: "mysql-service"
+        - name: REDIS_HOST
+          value: "redis-service"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  type: NodePort   # ✅ EXPOSE TO BROWSER
+  selector:
+    app: backend
+  ports:
+    - port: 5000
+      targetPort: 5000
+      nodePort: 30008   # ✅ ACCESS VIA THIS PORT

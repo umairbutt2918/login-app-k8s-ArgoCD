@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Landing</title>
+<link rel="stylesheet" href="style.css">
+
+<script>
+  if (!localStorage.getItem("token")) {
+    window.location.replace("login.html");
+  }
+</script>
+
+</head>
+<body>
+<div class="container">
+  <h1>You have logged in successfully</h1>
+  <button onclick="logout()">Logout</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

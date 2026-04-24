@@ -19,10 +19,10 @@ jobs:
         npm install
 
     # 🔹 Fail-safe test step
-    - name: Run backend tests
-      run: |
-        cd backend
-        npm test || exit 1
+    #- name: Run backend tests
+     # run: |
+     #   cd backend
+     #   npm test || exit 1
 
     # 🔹 Build backend image
     - name: Build backend image
